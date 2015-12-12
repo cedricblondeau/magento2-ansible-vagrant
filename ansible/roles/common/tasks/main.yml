@@ -7,3 +7,10 @@
 - name: Repos directory
   sudo: no
   file: path=/home/vagrant/repos/ state=directory owner=vagrant
+
+- name: Install basic packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - vim
+    - curl
