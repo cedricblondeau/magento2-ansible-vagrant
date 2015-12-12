@@ -1,5 +1,9 @@
 ---
-- name: Common | Update apt cache
+- name: Update apt cache
   sudo: yes
   apt: update-cache=yes
   tags: common
+
+- name: Repos directory
+  sudo: no
+  file: path=/home/vagrant/repos/ state=directory owner=vagrant
