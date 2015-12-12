@@ -9,3 +9,4 @@ An Ansible provisioned LEMP7 stack Vagrant box for Magento2 development
 - Redis
 - Memcached
 - Git
+- sexy-bash-prompt

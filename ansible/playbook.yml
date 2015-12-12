@@ -10,3 +10,4 @@
     - percona
     - redis
     - memcached
+    - sexy-bash-prompt
