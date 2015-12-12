@@ -9,12 +9,13 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.memory = "2048"
+    vb.cpus = 2
   end
 
   # Provisioning
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "ansible/playbook.yml"
-    ansible.sudo = true
+    ansible.sudo = false
     ansible.verbose = "v"
   end
 end
