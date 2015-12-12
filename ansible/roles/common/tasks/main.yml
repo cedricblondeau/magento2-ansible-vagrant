@@ -1,0 +1,5 @@
+---
+- name: Common | Update apt cache
+  sudo: yes
+  apt: update-cache=yes
+  tags: common

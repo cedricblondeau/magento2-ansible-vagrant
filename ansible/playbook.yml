@@ -1,0 +1,5 @@
+---
+- name: Set up a modern stack for Magento2 on Ubuntu 14.04
+  hosts: all
+  roles:
+    - common
