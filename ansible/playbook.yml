@@ -1,6 +1,8 @@
 ---
 - name: Set up a LEMP7 stack for Magento2 on Ubuntu 14.04
   hosts: all
+  vars_files:
+    - env_vars/base.yml
   roles:
     - common
     - git

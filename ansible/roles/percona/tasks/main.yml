@@ -5,11 +5,11 @@
 
 - name: Add Percona repository
   sudo: yes
-  apt_repository: repo='deb http://repo.percona.com/apt trusty main' state=present
+  apt_repository: repo='deb http://repo.percona.com/apt {{ ansible_distribution_release }} main' state=present
 
 - name: Add Percona source repository
   sudo: yes
-  apt_repository: repo='deb-src http://repo.percona.com/apt trusty main' state=present
+  apt_repository: repo='deb-src http://repo.percona.com/apt {{ ansible_distribution_release }} main' state=present
 
 - name: Update apt cache
   sudo: yes
@@ -22,3 +22,10 @@
     - percona-server-common-5.6
     - percona-server-client-5.6
     - percona-server-server-5.6
+    - python-mysqldb
+
+- name: Create a database
+  mysql_db: name={{ mysql_dbname }} state=present
+
+- name: Create a dedicated user
+  mysql_user: name={{ mysql_user }} password={{ mysql_password }} priv={{ mysql_dbname }}.*:ALL,GRANT state=present

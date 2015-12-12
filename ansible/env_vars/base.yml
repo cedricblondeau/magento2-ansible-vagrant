@@ -1,2 +1,5 @@
 ---
 application_name: magento2
+mysql_user: magento2
+mysql_password: magento2
+mysql_dbname: magento2
