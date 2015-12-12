@@ -1,10 +1,26 @@
 ---
-- name: Nginx | Install nginx
+- name: Install nginx
   sudo: yes
   apt: pkg=nginx
   tags: nginx
 
-- name: Nginx | Start nginx
+- name: nginx.conf
+  sudo: yes
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: nginx-magento2.conf
+  sudo: yes
+  template: src=nginx-magento2.conf dest=/etc/nginx/sites-available/magento2
+
+- name: Disable default site
+  sudo: yes
+  file: path=/etc/nginx/sites-available/default state=absent
+
+- name: Enable magento2 site
+  sudo: yes
+  file: src=/etc/nginx/sites-available/magento2 dest=/etc/nginx/sites-enabled/magento2 state=link
+
+- name: Start nginx
   sudo: yes
   service: name=nginx state=restarted
   tags: nginx
