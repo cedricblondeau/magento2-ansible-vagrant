@@ -65,6 +65,7 @@
   shell: cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm && chmod +x /etc/init.d/php-fpm && update-rc.d php-fpm defaults
   args:
     chdir: /home/vagrant/src/php-7.0.0/
+  notify: start php-fpm
 
 - name: php.ini
   sudo: yes
