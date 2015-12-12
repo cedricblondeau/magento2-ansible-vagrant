@@ -5,7 +5,7 @@
   tags: common
 
 - name: Repos directory
-  sudo: no
+  sudo: yes
   file: path=/home/vagrant/repos/ state=directory owner=vagrant
 
 - name: Install basic packages
