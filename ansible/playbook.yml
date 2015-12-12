@@ -6,6 +6,7 @@
     - git
     - nginx
     - php7
+    - composer
     - percona
     - redis
     - memcached
