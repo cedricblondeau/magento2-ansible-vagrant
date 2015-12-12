@@ -6,3 +6,4 @@
     - git
     - nginx
     - php7
+    - redis
