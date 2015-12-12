@@ -27,7 +27,7 @@
 
 - name: Configure the build
   sudo: no
-  shell: ./configure --prefix=/usr/local \
+  shell: ./configure --prefix="{{ php_build_prefix }}" \
     --enable-soap \
     --enable-bcmath \
     --with-mcrypt \
@@ -59,3 +59,26 @@
   shell: make install
   args:
     chdir: /home/vagrant/src/php-7.0.0/
+
+- name: PHP-FPM service
+  sudo: yes
+  shell: cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm && chmod +x /etc/init.d/php-fpm && update-rc.d php-fpm defaults
+  args:
+    chdir: /home/vagrant/src/php-7.0.0/
+
+- name: php.ini
+  sudo: yes
+  template: src=php.ini
+            dest=/usr/local/lib/php.ini
+  notify: reload php-fpm
+
+- name: php-fpm - magento2
+  sudo: yes
+  template: src=php-fpm-magento2.conf
+            dest=/usr/local/etc/php-fpm.d/magento2.conf
+
+- name: php-fpm
+  sudo: yes
+  template: src=php-fpm.conf
+            dest=/usr/local/etc/php-fpm.conf
+  notify: reload php-fpm
