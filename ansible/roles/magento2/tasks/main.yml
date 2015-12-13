@@ -1,0 +1,30 @@
+---
+- name: auth.json
+  sudo: no
+  template: src=auth.json dest=/home/vagrant/repos/magento2/auth.json
+
+- name: Composer update
+  sudo: no
+  composer: command=update working_dir=/home/vagrant/repos/magento2/
+
+- name: Setup install
+  sudo: no
+  shell: php bin/magento setup:install \
+    --cleanup-database \
+    --backend-frontname=admin \
+    --session-save=db \
+    --db-host=localhost \
+    --db-user={{ mysql_user }} \
+    --db-password={{ mysql_password }} \
+    --db-name={{ mysql_dbname }} \
+    --use-rewrites=1 \
+    --admin-user={{ magento2_admin_user }} \
+    --admin-password={{ magento2_admin_password }} \
+    --admin-email={{ magento2_admin_email }} \
+    --admin-firstname={{ magento2_admin_firstname }} \
+    --admin-lastname={{ magento2_admin_lastname }} \
+    --language={{ magento2_language }} \
+    --currency={{ magento2_currency }} \
+    --base-url={{ base_url }}
+  args:
+    chdir: /home/vagrant/repos/magento2/
