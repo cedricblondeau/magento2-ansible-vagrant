@@ -13,52 +13,41 @@
     - libmcrypt-dev
     - libxslt1-dev
 
-- name: Create src directory
-  sudo: no
+- name: Ensure src directory exists with proper permissions
+  sudo: yes
   file: path=/home/vagrant/src/ state=directory owner=vagrant
 
 - name: Download PHP 7.0.0 src
   sudo: no
   get_url: url=http://php.net/get/php-7.0.0.tar.bz2/from/this/mirror dest=/home/vagrant/src/php-7.0.0.tar.bz2
+  register: download
 
 - name: Unpack PHP 7.0.0 src tarball
   sudo: no
   unarchive: src=/home/vagrant/src/php-7.0.0.tar.bz2 dest=/home/vagrant/src/ copy=no
+  when: download.changed
 
 - name: Configure the build
   sudo: no
-  shell: ./configure --prefix="{{ php_build_prefix }}" \
-    --enable-soap \
-    --enable-bcmath \
-    --with-mcrypt \
-    --with-xsl \
-    --enable-mbstring \
-    --with-curl \
-    --with-gd \
-    --with-jpeg-dir \
-    --with-png-dir \
-    --enable-intl \
-    --enable-fpm \
-    --with-openssl \
-    --with-pdo-mysql \
-    --with-mysql-sock=/var/run/mysqld/mysqld.sock \
-    --enable-zip \
-    --with-zlib \
-    --with-zlib-dir
+  shell: ./configure {{ php_build_options }}
   args:
     chdir: /home/vagrant/src/php-7.0.0/
+  register: configure
 
 - name: Build PHP7
   sudo: no
   shell: make
   args:
     chdir: /home/vagrant/src/php-7.0.0/
+  register: make
+  when: configure.changed
 
 - name: Install PHP7
   sudo: yes
   shell: make install
   args:
     chdir: /home/vagrant/src/php-7.0.0/
+  when: make.changed
 
 - name: PHP-FPM service
   sudo: yes
@@ -66,6 +55,7 @@
   args:
     chdir: /home/vagrant/src/php-7.0.0/
   notify: start php-fpm
+  when: download.changed
 
 - name: php.ini
   sudo: yes
@@ -83,3 +73,5 @@
   template: src=php-fpm.conf
             dest=/usr/local/etc/php-fpm.conf
   notify: reload php-fpm
+
+- include: xdebug.yml
