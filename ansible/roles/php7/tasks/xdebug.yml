@@ -1,3 +1,7 @@
+- name: Xdebug - autoconf
+  sudo: yes
+  apt: pkg=autoconf state=latest
+
 - name: Xdebug - Ensure src directory exists with proper permissions
   sudo: yes
   file: path=/home/vagrant/src/ state=directory owner=vagrant
