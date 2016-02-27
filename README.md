@@ -1,7 +1,7 @@
 # magento2-ansible-vagrant
-An Ansible provisioned LEMP7 stack Vagrant box for Magento2 development
+An Ansible provisioned LEMP7 stack Vagrant box for Magento2 development.
 
-Work in progress.
+Definitely not full-featured but useful to bootstrap a project.
 
 ## Packages
 - Nginx
