@@ -15,7 +15,7 @@ Vagrant.configure(2) do |config|
   end
 
   # Provisioning
-  config.vm.provision "ansible" do |ansible|
+  config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "ansible/playbook.yml"
     ansible.verbose = "v"
   end
