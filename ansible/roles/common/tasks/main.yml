@@ -14,3 +14,4 @@
   with_items:
     - vim
     - curl
+    - git
