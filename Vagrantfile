@@ -14,9 +14,6 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--name", "magento2-devbox"]
   end
 
-  # NFS share
-  config.vm.synced_folder "../magento2", "/home/vagrant/repos/magento2", type: "nfs"
-
   # Provisioning
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "ansible/playbook.yml"
