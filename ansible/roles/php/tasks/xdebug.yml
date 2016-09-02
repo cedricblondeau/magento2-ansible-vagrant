@@ -1,0 +1,9 @@
+---
+- name: Install xdebug
+  become: yes
+  apt: pkg=php-xdebug state=present update_cache=yes
+  notify: Restart php-fpm
+
+- name: Disable xdebug for CLI SAPI
+  become: yes
+  file: path=/etc/php/7.0/cli/conf.d/20-xdebug.ini state=absent
