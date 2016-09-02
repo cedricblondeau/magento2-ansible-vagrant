@@ -1,11 +1,8 @@
 ---
-- name: Set up a LEMP7 stack for Magento2 on Ubuntu 16.04
+- name: Set up a dev stack for Magento2 on Ubuntu 16.04
   hosts: all
   become: no
   become_method: sudo
-  remote_user: vagrant
-  vars_files:
-    - env_vars/base.yml
   roles:
     - common
     - php

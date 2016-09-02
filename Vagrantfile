@@ -17,6 +17,7 @@ Vagrant.configure(2) do |config|
   # Provisioning
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "ansible/playbook.yml"
-    ansible.verbose = "v"
+    ansible.verbose = "vvvv"
+    ansible.extra_vars = "ansible/group_vars/dev.yml"
   end
 end
