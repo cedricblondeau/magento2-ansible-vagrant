@@ -1,6 +1,7 @@
 # magento2-ansible-vagrant
 
-> Ansible provisioned vagrant box for Magento2 development. Definitely not full-featured but useful to bootstrap a project.
+> Ansible provisioned Ubuntu 16.04 vagrant box for [Magento2](https://github.com/magento/magento2) development. 
+> Definitely not full-featured but useful to bootstrap a project.
 
 ## Base box
 
