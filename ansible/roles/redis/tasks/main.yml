@@ -1,6 +1,4 @@
 ---
-- name: Redis Server - Install
-  sudo: yes
-  apt: name={{ item }} state=present
-  with_items:
-    - redis-server
+- name: Install
+  become: yes
+  apt: name=redis-server state=present
