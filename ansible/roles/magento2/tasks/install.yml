@@ -1,0 +1,22 @@
+---
+- name: Install
+  shell: php bin/magento setup:install \
+    --cleanup-database \
+    --backend-frontname=admin \
+    --session-save=db \
+    --db-host=localhost \
+    --db-user={{ mysql_user }} \
+    --db-password={{ mysql_password }} \
+    --db-name={{ mysql_dbname }} \
+    --use-rewrites=1 \
+    --admin-user={{ magento2_admin_user }} \
+    --admin-password={{ magento2_admin_password }} \
+    --admin-email={{ magento2_admin_email }} \
+    --admin-firstname={{ magento2_admin_firstname }} \
+    --admin-lastname={{ magento2_admin_lastname }} \
+    --language={{ magento2_language }} \
+    --currency={{ magento2_currency }} \
+    --key={{ magento2_crypt_key }} \
+    --base-url={{ magento2_base_url }}
+  args:
+    chdir: /home/vagrant/repos/magento2
