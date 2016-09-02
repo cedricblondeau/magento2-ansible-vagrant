@@ -2,7 +2,7 @@
 
 > Ansible provisioned Ubuntu 16.04 vagrant box for [Magento2](https://github.com/magento/magento2) development. 
 
-Definitely not full-featured but useful to bootstrap a project.
+Definitely not full-featured but useful to bootstrap a dev project.
 
 ## Base box
 
@@ -10,7 +10,7 @@ Definitely not full-featured but useful to bootstrap a project.
 
 ## Roles
 
-- Dev tools: git, vim, curl
+- Dev tools: git, vim, curl, htop
 - PHP (7.0 + Composer + Xdebug)
 - Nginx
 - Redis (for session, full page cache and frontend cache)
