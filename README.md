@@ -24,3 +24,31 @@ As a result, Ansible do **not** need to be installed on the host.
 - Redis (for session, full page cache and frontend cache)
 - MariaDB 10.0 (dedicated user and database)
 - Magento2 (automated project creation, installation and configuration)
+
+## Get started
+
+### Clone this repository
+
+```bash
+git clone https://github.com/cedricblondeau/magento2-ansible-vagrant
+```
+
+### Configure
+
+Create a dev.yml conf file in ansible/group_vars and set your Magento keys:
+
+```bash
+cd magento2-ansible-vagrant
+cp ansible/group_vars/dev.yml.sample ansible/group_vars/dev.yml
+```
+
+```yaml
+magento_account_public_key: YOUR_PUBLIC_KEY_HERE
+magento_account_private_key: YOUR_PRIVATE_KEY_HERE
+```
+
+### Up!
+
+```bash
+vagrant up
+```
