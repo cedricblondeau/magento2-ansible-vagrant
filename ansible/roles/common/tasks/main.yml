@@ -6,7 +6,7 @@
 
 - name: Repos directory
   become: yes
-  file: path=/home/vagrant/repos/ state=directory owner=vagrant
+  file: path=/home/vagrant/repos/ state=directory owner=vagrant group=vagrant
 
 - name: Install dev packages
   become: yes
