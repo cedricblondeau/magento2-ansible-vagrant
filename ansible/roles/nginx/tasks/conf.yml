@@ -6,7 +6,7 @@
 
 - name: Disable default site
   become: yes
-  file: path=/etc/nginx/sites-available/default state=absent
+  file: path=/etc/nginx/sites-enabled/default state=absent
   notify: Reload nginx
 
 - name: Enable magento2 site
