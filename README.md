@@ -63,7 +63,7 @@ magento2_base_url: http://192.168.33.10
 
 ### 3. Define a syncing strategy
 
-See [syncing section](#Syncing).
+See [syncing section](#syncing).
 
 ### 4. Up!
 
