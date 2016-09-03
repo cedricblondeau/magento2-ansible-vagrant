@@ -23,17 +23,17 @@ As a result, Ansible do **not** need to be installed on the host.
 - Nginx
 - Redis (for session, full page cache and frontend cache)
 - MariaDB 10.0 (dedicated user and database)
-- Magento2 (automated project creation, installation and configuration)
+- Magento2 (automated project creation if directory is empty, installation and configuration)
 
 ## Get started
 
-### Clone this repository
+### 1. Clone this repository
 
 ```bash
 git clone https://github.com/cedricblondeau/magento2-ansible-vagrant
 ```
 
-### Configure
+### 2. Configure
 
 Create a dev.yml conf file in ansible/group_vars:
 
@@ -61,8 +61,41 @@ magento2_crypt_key: YOUR_CRYPT_KEY
 magento2_base_url: http://192.168.33.10
 ```
 
-### Up!
+### 3. Define a syncing strategy
+
+See [syncing section](#Syncing).
+
+### 4. Up!
 
 ```bash
 vagrant up
 ```
+
+## Syncing
+
+By default, Magento2 files lives in the box.
+
+It's up to you to configure your preferred sync solution.
+
+Here are several ideas:
+
+#### NFS (host => guest)
+
+You can find a commented out statement in Vagrantfile.
+
+Example:
+
+```ruby
+  config.vm.synced_folder "../magento2", "/home/vagrant/repos/magento2",
+    type: 'nfs', mount_options: ['rw', 'async', 'fsc' ,'actimeo=2']
+```
+
+#### NFS (guest => host)
+
+See [vagrant-nfs_guest]https://github.com/Learnosity/vagrant-nfs_guest
+
+#### Don't sync anything
+
+You could also use your IDE in the VM. You may want to install a GUI to do so.
+
+#### Rsync
