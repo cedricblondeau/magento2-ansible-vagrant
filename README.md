@@ -75,9 +75,7 @@ vagrant up
 
 By default, Magento2 files lives in the box.
 
-It's up to you to configure your preferred sync solution.
-
-Here are several ideas:
+It's up to you to configure your preferred sync solution. Here are some ideas:
 
 #### NFS (host => guest)
 
@@ -92,7 +90,7 @@ Example:
 
 #### NFS (guest => host)
 
-See [vagrant-nfs_guest]https://github.com/Learnosity/vagrant-nfs_guest
+See [vagrant-nfs_guest](https://github.com/Learnosity/vagrant-nfs_guest)
 
 #### Don't sync anything
 
