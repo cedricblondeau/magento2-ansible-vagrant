@@ -73,7 +73,7 @@ vagrant up
 
 ## Syncing
 
-By default, Magento2 files lives in the box.
+By default, Magento2 files live in the box.
 
 It's up to you to configure your preferred sync solution. Here are some ideas:
 
