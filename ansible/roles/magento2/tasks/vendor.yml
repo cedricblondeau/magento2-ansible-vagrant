@@ -1,0 +1,3 @@
+---
+- name: Install vendor packages
+  composer: command=install working_dir=/home/vagrant/repos/magento2
