@@ -35,14 +35,16 @@ git clone https://github.com/cedricblondeau/magento2-ansible-vagrant
 
 ### Configure
 
-Create a dev.yml conf file in ansible/group_vars and set your Magento keys:
+Create a dev.yml conf file in ansible/group_vars:
 
 ```bash
 cd magento2-ansible-vagrant
 cp ansible/group_vars/dev.yml.sample ansible/group_vars/dev.yml
 ```
 
-```yaml dev.yml
+And configure your environment:
+
+```yaml
 magento_account_public_key: YOUR_PUBLIC_KEY_HERE
 magento_account_private_key: YOUR_PRIVATE_KEY_HERE
 mysql_user: magento2
