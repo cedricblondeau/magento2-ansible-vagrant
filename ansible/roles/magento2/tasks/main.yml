@@ -1,30 +1,32 @@
 ---
-- name: auth.json
-  sudo: no
-  template: src=auth.json dest=/home/vagrant/repos/magento2/auth.json
+- include: keys.yml
 
-- name: Composer update
-  sudo: no
-  composer: command=update working_dir=/home/vagrant/repos/magento2/
+- name: Check if magento2 directoy exists
+  stat: path=/home/vagrant/repos/magento2
+  register: magento2_dir
 
-- name: Setup install
-  sudo: no
-  shell: php bin/magento setup:install \
-    --cleanup-database \
-    --backend-frontname=admin \
-    --session-save=db \
-    --db-host=localhost \
-    --db-user={{ mysql_user }} \
-    --db-password={{ mysql_password }} \
-    --db-name={{ mysql_dbname }} \
-    --use-rewrites=1 \
-    --admin-user={{ magento2_admin_user }} \
-    --admin-password={{ magento2_admin_password }} \
-    --admin-email={{ magento2_admin_email }} \
-    --admin-firstname={{ magento2_admin_firstname }} \
-    --admin-lastname={{ magento2_admin_lastname }} \
-    --language={{ magento2_language }} \
-    --currency={{ magento2_currency }} \
-    --base-url={{ base_url }}
-  args:
-    chdir: /home/vagrant/repos/magento2/
+- name: Check if magento2 directoy is populated
+  shell: ls -1 /home/vagrant/repos/magento2 | wc -l
+  register: magento2_files_count
+  when: magento2_dir.stat.exists
+
+- include: create.yml
+  when: (magento2_dir.stat.exists == False) or
+        (magento2_dir.stat.exists == True and magento2_files_count.stdout == "0")
+
+- name: Check if vendor directoy exists
+  stat: path=/home/vagrant/repos/magento2/vendor
+  register: magento2_vendor_dir
+
+- include: vendor.yml
+  when: magento2_vendor_dir.stat.exists == False
+
+- name: Check if magento2 is installed
+  shell: mysql -u root -Ns -e "SELECT COUNT(DISTINCT table_name) FROM information_schema.columns WHERE table_schema = 'magento2'"
+  become: true
+  register: magento2_tables_count
+
+- include: install.yml
+  when: magento2_tables_count.stdout == "0"
+
+- include: conf.yml

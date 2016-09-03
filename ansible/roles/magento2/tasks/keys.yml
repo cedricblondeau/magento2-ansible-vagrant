@@ -1,0 +1,3 @@
+---
+- name: Set repo.magento.com composer keys
+  shell: composer config --global http-basic.repo.magento.com {{ magento_account_public_key }} {{ magento_account_private_key }}

@@ -1,0 +1,15 @@
+---
+- name: Copy php.ini
+  become: yes
+  copy: src=php.ini dest=/etc/php/7.0/fpm/php.ini
+  notify: Restart php-fpm
+
+- name: Delete www.conf
+  become: yes
+  file: path=/etc/php/7.0/fpm/pool.d/www.conf state=absent
+  notify: Restart php-fpm
+
+- name: Copy magento2.conf
+  become: yes
+  copy: src=magento2.conf dest=/etc/php/7.0/fpm/pool.d/magento2.conf
+  notify: Restart php-fpm

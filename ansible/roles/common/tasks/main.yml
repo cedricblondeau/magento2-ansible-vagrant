@@ -1,16 +1,18 @@
 ---
 - name: Update apt cache
-  sudo: yes
+  become: yes
   apt: update-cache=yes
   tags: common
 
 - name: Repos directory
-  sudo: yes
-  file: path=/home/vagrant/repos/ state=directory owner=vagrant
+  become: yes
+  file: path=/home/vagrant/repos/ state=directory owner=vagrant group=vagrant
 
-- name: Install basic packages
-  sudo: yes
+- name: Install dev packages
+  become: yes
   apt: pkg={{ item }} state=latest
   with_items:
     - vim
     - curl
+    - git
+    - htop

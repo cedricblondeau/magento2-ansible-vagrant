@@ -1,0 +1,13 @@
+---
+- name: Download installer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /home/vagrant/composer-setup.php
+    checksum: "sha384:e115a8dc7871f15d853148a7fbac7da27d6c0030b848d9b3dc09e2a0388afed865e6a3d6b3c0fad45c48e2b5fc1196ae"
+
+- name: Install
+  become: true
+  shell: php /home/vagrant/composer-setup.php --filename=composer --install-dir=/usr/local/bin
+
+- name: Delete installer
+  file: path=/home/vagrant/composer-setup.php state=absent

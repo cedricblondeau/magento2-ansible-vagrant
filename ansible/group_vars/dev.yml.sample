@@ -1,0 +1,6 @@
+---
+magento_account_public_key: YOUR_PUBLIC_KEY_HERE
+magento_account_private_key: YOUR_PRIVATE_KEY_HERE
+mysql_user: magento2
+mysql_password: magento2
+mysql_dbname: magento2

@@ -1,0 +1,15 @@
+---
+- name: Copy magento2.conf
+  become: yes
+  copy: src=magento2.conf dest=/etc/nginx/sites-available/magento2.conf
+  notify: Reload nginx
+
+- name: Disable default site
+  become: yes
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: Reload nginx
+
+- name: Enable magento2 site
+  become: yes
+  file: src=/etc/nginx/sites-available/magento2.conf dest=/etc/nginx/sites-enabled/magento2 state=link
+  notify: Reload nginx

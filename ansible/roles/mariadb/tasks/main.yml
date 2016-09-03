@@ -1,0 +1,16 @@
+---
+- name: Install MariaDB packages
+  become: yes
+  apt: pkg={{ item }} state=present update_cache=yes
+  with_items:
+    - mariadb-server-10.0
+    - mariadb-client-10.0
+    - python-mysqldb
+
+- name: Create a database
+  become: true
+  mysql_db: name={{ mysql_dbname }} state=present
+
+- name: Create a dedicated user
+  become: true
+  mysql_user: name={{ mysql_user }} password={{ mysql_password }} priv={{ mysql_dbname }}.*:ALL,GRANT state=present
