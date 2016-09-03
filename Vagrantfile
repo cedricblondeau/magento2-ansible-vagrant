@@ -14,6 +14,9 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--name", "magento2-devbox"]
   end
 
+  # Ansible playbook
+  config.vm.synced_folder ".", "/vagrant", type: 'virtualbox'
+
   # Provisioning
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "ansible/playbook.yml"
