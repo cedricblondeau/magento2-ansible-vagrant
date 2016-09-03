@@ -1,6 +1,6 @@
 # magento2-ansible-vagrant
 
-> Ansible provisioned Ubuntu 16.04 vagrant box for [Magento2](https://github.com/magento/magento2) development. 
+> Ansible provisioned Ubuntu 16.04 vagrant box for [Magento2](https://github.com/magento/magento2) development.
 
 Definitely not full-featured but useful to bootstrap a dev project.
 
@@ -42,9 +42,21 @@ cd magento2-ansible-vagrant
 cp ansible/group_vars/dev.yml.sample ansible/group_vars/dev.yml
 ```
 
-```yaml
+```yaml dev.yml
 magento_account_public_key: YOUR_PUBLIC_KEY_HERE
 magento_account_private_key: YOUR_PRIVATE_KEY_HERE
+mysql_user: magento2
+mysql_password: magento2
+mysql_dbname: magento2
+magento2_language: en_US
+magento2_currency: USD
+magento2_admin_user: admin
+magento2_admin_password: admin2015
+magento2_admin_email: null@magento.com
+magento2_admin_firstname: John
+magento2_admin_lastname: Doe
+magento2_crypt_key: YOUR_CRYPT_KEY
+magento2_base_url: http://192.168.33.10
 ```
 
 ### Up!
