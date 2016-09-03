@@ -1,5 +1,5 @@
 ---
-- name: Create project directory
+- name: Ensure project directory exists
   file: path=/home/vagrant/repos/magento2 state=directory
 
 - name: Create project

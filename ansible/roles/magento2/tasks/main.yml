@@ -5,8 +5,14 @@
   stat: path=/home/vagrant/repos/magento2
   register: magento2_dir
 
+- name: Check if magento2 directoy is populated
+  shell: ls -1 /home/vagrant/repos/magento2 | wc -l
+  register: magento2_files_count
+  when: magento2_dir.stat.exists
+
 - include: create.yml
-  when: magento2_dir.stat.exists == False
+  when: (magento2_dir.stat.exists == False) or
+        (magento2_dir.stat.exists == True and magento2_files_count.stdout == "0")
 
 - name: Check if magento2 is installed
   shell: mysql -u root -Ns -e "SELECT COUNT(DISTINCT table_name) FROM information_schema.columns WHERE table_schema = 'magento2'"
