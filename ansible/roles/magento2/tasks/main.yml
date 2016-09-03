@@ -1,5 +1,5 @@
 ---
-- include: composer.yml
+- include: keys.yml
 
 - name: Check if magento2 directoy exists
   stat: path=/home/vagrant/repos/magento2
