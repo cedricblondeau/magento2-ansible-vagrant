@@ -94,6 +94,6 @@ See [vagrant-nfs_guest](https://github.com/Learnosity/vagrant-nfs_guest)
 
 #### Don't sync anything
 
-You could also use your IDE in the VM. You may want to install a GUI to do so.
+You could also use your IDE in the VM. You may want to install a GUI or play with X11 forwarding to do so.
 
 #### Rsync
