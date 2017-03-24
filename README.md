@@ -71,6 +71,8 @@ See [syncing section](#syncing).
 vagrant up
 ```
 
+### 5. Open http://192.168.33.10/ in your browser
+
 ## Syncing
 
 By default, Magento2 files live in the box.
