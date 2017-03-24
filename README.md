@@ -71,7 +71,9 @@ See [syncing section](#syncing).
 vagrant up
 ```
 
-### 5. Open http://192.168.33.10 in your browser
+### 5. It's ready!
+
+Default base URL is: http://192.168.33.10
 
 ## Syncing
 
