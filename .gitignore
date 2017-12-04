@@ -1,3 +1,4 @@
 .idea
 .vagrant
+ansible/playbook.retry
 ansible/group_vars/*.yml

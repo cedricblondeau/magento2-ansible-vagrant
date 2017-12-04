@@ -1,9 +1,17 @@
 ---
+- name: Get composer checksum
+  get_url:
+    url: https://composer.github.io/installer.sig
+    dest: /home/vagrant/composer-installer.sig
+
 - name: Download installer
   get_url:
     url: https://getcomposer.org/installer
     dest: /home/vagrant/composer-setup.php
-    checksum: "sha384:669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410"
+    checksum: "sha384:{{ lookup('file', '/home/vagrant/composer-installer.sig') }}"
+
+- name: Delete checksum file
+  file: path=/home/vagrant/composer-installer.sig state=absent
 
 - name: Install
   become: true
